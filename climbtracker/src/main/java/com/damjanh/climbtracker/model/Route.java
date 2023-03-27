@@ -18,4 +18,51 @@ public class Route {
     private int lengthMeters;
     @Enumerated(EnumType.STRING)
     private Dificulty dificulty;
+
+    private Route() {
+        // Hidden
+    }
+
+    public Route(String title, String description, int lengthMeters, Dificulty dificulty) {
+        this.title = title;
+        this.description = description;
+        this.lengthMeters = lengthMeters;
+        this.dificulty = dificulty;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getLengthMeters() {
+        return lengthMeters;
+    }
+
+    public void setLengthMeters(int lengthMeters) {
+        this.lengthMeters = lengthMeters;
+    }
+
+    public Dificulty getDificulty() {
+        return dificulty;
+    }
+
+    public void setDificulty(Dificulty dificulty) {
+        this.dificulty = dificulty;
+    }
 }
