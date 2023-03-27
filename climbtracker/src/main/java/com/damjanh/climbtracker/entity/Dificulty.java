@@ -1,4 +1,4 @@
-package com.damjanh.climbtracker.model;
+package com.damjanh.climbtracker.entity;
 
 public enum Dificulty {
     DIF_4a, DIF_4b, DIF_4c,

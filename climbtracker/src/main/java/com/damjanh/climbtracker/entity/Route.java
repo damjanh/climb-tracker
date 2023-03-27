@@ -1,22 +1,30 @@
-package com.damjanh.climbtracker.model;
+package com.damjanh.climbtracker.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "route")
 public class Route {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "route_id")
     private long id;
+    @Column(name = "route_title")
     private String title;
+    @Column(name = "route_description")
     private String description;
+    @Column(name = "route_length")
     private int lengthMeters;
     @Enumerated(EnumType.STRING)
+    @Column(name = "route_dificulty")
     private Dificulty dificulty;
 
     private Route() {
