@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
+import Routes from './Routes';
 
-const Main = () => {
+const Main = (props) => {
+  const { logout } = props;
   return (
     <div>
-      <Header/>
-      <div>Main</div>
+      <Header logout={logout}/>
+      <Routes />
     </div>
   )
 }
