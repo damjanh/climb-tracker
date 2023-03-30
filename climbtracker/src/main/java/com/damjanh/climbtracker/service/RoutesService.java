@@ -17,4 +17,9 @@ public class RoutesService implements IRoutesService {
     public List<Route> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public List<Route> getAttemptsForUser(long userId) {
+        return repository.findByAttempts_UserId(userId);
+    }
 }

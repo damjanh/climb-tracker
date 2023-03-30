@@ -1,16 +1,24 @@
 package com.damjanh.climbtracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.List;
 
 @Entity
 @Table(name = "route")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Route {
 
     @Id
@@ -27,8 +35,11 @@ public class Route {
     @Column(name = "route_dificulty")
     private Dificulty dificulty;
 
-    private Route() {
-        // Hidden
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "route", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Attempt> attempts;
+
+    public Route() {
     }
 
     public Route(String title, String description, int lengthMeters, Dificulty dificulty) {
@@ -72,5 +83,13 @@ public class Route {
 
     public void setDificulty(Dificulty dificulty) {
         this.dificulty = dificulty;
+    }
+
+    public List<Attempt> getAttempts() {
+        return attempts;
+    }
+
+    public void setAttempts(List<Attempt> attempts) {
+        this.attempts = attempts;
     }
 }

@@ -1,11 +1,18 @@
 package com.damjanh.climbtracker.security.model;
 
+import com.damjanh.climbtracker.entity.Attempt;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -24,14 +31,17 @@ public class User {
     @Column(name = "user_password")
     private String password;
 
-    private User() {
-        // Hidden
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Attempt> attempts;
+
+    public User() {
     }
 
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this. password = password;
+        this.password = password;
     }
 
     public Long getId() {
@@ -60,5 +70,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Attempt> getAttempts() {
+        return attempts;
+    }
+
+    public void setAttempts(Set<Attempt> attempts) {
+        this.attempts = attempts;
     }
 }

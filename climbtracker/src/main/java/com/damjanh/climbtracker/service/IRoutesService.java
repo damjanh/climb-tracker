@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IRoutesService {
     List<Route> findAll();
+
+    List<Route> getAttemptsForUser(long userId);
 }
